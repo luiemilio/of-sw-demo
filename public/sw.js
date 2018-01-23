@@ -14,7 +14,10 @@ function precache() {
   return caches.open(CACHE).then(function (cache) {
     return cache.addAll([
       './index.html',
-      './child.html'
+      './child.html',
+      './main.js',
+      './child.js',
+      './sw.js'
     ]);
   });
 }

@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //Once the DOM has loaded and the OpenFin API is ready
 function onMain() {
   const app = fin.desktop.Application.getCurrent();
+
   fin.desktop.System.showDeveloperTools(app.uuid, app.uuid);
   fin.desktop.System.getVersion(version => {
     const ofVersion = document.querySelector("#of-version");
@@ -26,27 +27,13 @@ function onMain() {
 
   openChildWindowBtn.addEventListener("click", () => {
     var child = new fin.desktop.Window({
-      name: "childWindow" + winCtr++,
+      name: "" + winCtr++,
       url: "child.html",
       defaultWidth: 320,
       defaultHeight: 320,
       defaultTop: Math.random() * 600,
       defaultLeft: Math.random() * 600,
       autoShow: true
-    });
-  });
-
-  const mainWin = fin.desktop.Window.getCurrent();
-
-  mainWin.addEventListener("close-requested", () => {
-    fin.desktop.System.clearCache({
-      cache: true,
-      cookies: true,
-      localStorage: true,
-      appcache: true,
-      userData: true
-    }, () => {
-      app.terminate();
     });
   });
 }
